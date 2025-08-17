@@ -30,11 +30,22 @@ function adicionarAmigo() {
   function adicionarALista() {
     console.log(listaDeAmigos)
     lista.innerHTML = ""; 
-    listaDeAmigos.forEach(amigo => {
+    listaDeAmigos.forEach((amigo, index)=> {
       const item_lista = document.createElement("li");
       item_lista.textContent = amigo;
       lista.appendChild(item_lista);
+      const btnRemover = document.createElement("button");
+      btnRemover.textContent = "remover";
+      btnRemover.classList.add("btn_remover");
+      btnRemover.onclick = () => remover(index);
+      item_lista.appendChild(btnRemover);
     });
+  }
+
+
+  function remover(index){
+    listaDeAmigos.splice(index,1)
+    adicionarALista()
   }
 
   function limparInput() {
